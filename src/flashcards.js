@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./flashcards.css";
 
 const flashCards = [
@@ -42,5 +43,21 @@ function Cards() {
 }
 
 function FlashCard({ id, question, answer }) {
-  return <div className="item">{`${id}: ${question}, ${answer}`}</div>;
+  const [isOpen, setIsOpen] = useState(false);
+  function handleClick() {
+    setIsOpen(!isOpen);
+  }
+
+  return (
+    <button
+      className="item"
+      style={{
+        backgroundColor: isOpen ? "rgba(0,0,255,0.75)" : "",
+        color: isOpen ? "white" : "",
+      }}
+      onClick={handleClick}
+    >
+      {!isOpen ? `${id} : ${question}` : `${answer}`}
+    </button>
+  );
 }
