@@ -8,6 +8,7 @@
 
 body {
   font-family: "Kanit";
+  font-size: 1rem;
 }
 
 .container {
@@ -20,12 +21,14 @@ body {
 }
 
 .item {
-  font-family: inherit;
-  font-size: inherit;
   width: 480px;
   height: 200px;
   padding: 3rem 1rem;
   border: 1px solid black;
   border-radius: 0.25rem;
   background-color: lightgray;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -2,7 +2,11 @@ import { useState } from "react";
 import "./flashcards.css";
 
 const flashCards = [
-  { id: 1, question: "What language is React based on?", answer: "JavaScript" },
+  {
+    id: 1,
+    question: "What language is React based on?",
+    answer: "JavaScript",
+  },
   {
     id: 2,
     question: "What are the building blocks of React app?",
@@ -19,7 +23,11 @@ const flashCards = [
     question: "How to pass data from parent to child components?",
     answer: "Props",
   },
-  { id: 5, question: "How to give components memory?", answer: "Using State" },
+  {
+    id: 5,
+    question: "How to give components memory?",
+    answer: "Using State",
+  },
   {
     id: 6,
     question:
@@ -43,21 +51,22 @@ function Cards() {
 }
 
 function FlashCard({ id, question, answer }) {
-  const [isOpen, setIsOpen] = useState(false);
-  function handleClick() {
-    setIsOpen(!isOpen);
+  const [isClicked, setIsClicked] = useState(false);
+
+  function handleClick(evnt) {
+    setIsClicked(!isClicked);
   }
 
   return (
-    <button
+    <div
       className="item"
       style={{
-        backgroundColor: isOpen ? "rgba(0,0,255,0.75)" : "",
-        color: isOpen ? "white" : "",
+        backgroundColor: isClicked ? "rgba(0,0,255,0.75)" : "",
+        color: isClicked ? "white" : "",
       }}
       onClick={handleClick}
     >
-      {!isOpen ? `${id} : ${question}` : `${answer}`}
-    </button>
+      {!isClicked ? `${id} : ${question}` : `${answer}`}
+    </div>
   );
 }
