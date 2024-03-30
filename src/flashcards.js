@@ -16,7 +16,7 @@ const flashCards = [
     id: 3,
     question:
       "What is the name of the syntax we use to describe a UI in React?",
-    answer: "N/A",
+    answer: "JSX",
   },
   {
     id: 4,
@@ -38,35 +38,30 @@ const flashCards = [
 
 export default function App() {
   return (
-    <div className="container">
+    <div className="app">
       <Cards />
     </div>
   );
 }
 
 function Cards() {
-  return flashCards.map((card) => (
-    <FlashCard id={card.id} question={card.question} answer={card.answer} />
-  ));
-}
+  const [selectedID, setSelectedID] = useState(null);
 
-function FlashCard({ id, question, answer }) {
-  const [isClicked, setIsClicked] = useState(false);
-
-  function handleClick(evnt) {
-    setIsClicked(!isClicked);
+  function handleClick(id) {
+    setSelectedID(selectedID !== id ? id : null);
   }
 
-  return (
-    <div
-      className="item"
-      style={{
-        backgroundColor: isClicked ? "rgba(0,0,255,0.75)" : "",
-        color: isClicked ? "white" : "",
-      }}
-      onClick={handleClick}
-    >
-      {!isClicked ? `${id} : ${question}` : `${answer}`}
-    </div>
-  );
+  return flashCards.map((card) => {
+    const isOpen = selectedID === card.id;
+
+    return (
+      <div
+        className={isOpen ? `item active` : "item"}
+        key={card.id}
+        onClick={() => handleClick(card.id)}
+      >
+        {isOpen ? `${card.answer}` : `${card.id}) ${card.question}`}
+      </div>
+    );
+  });
 }
